@@ -41,8 +41,12 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Cor.h" />
+		<Unit filename="include/ExecutaJogo.h" />
+		<Unit filename="include/Menu.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Cor.cpp" />
+		<Unit filename="src/ExecutaJogo.cpp" />
+		<Unit filename="src/Menu.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

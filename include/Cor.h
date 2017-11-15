@@ -3,6 +3,7 @@
 
 #include "opencv2/highgui/highgui.hpp"
 #include "imgproc/imgproc.hpp"
+#include <string>
 
 using namespace cv;
 
@@ -12,8 +13,8 @@ class Cor
         Cor();
         virtual ~Cor();
 
-        char getCor(){return cor;}
-        void setCor(char essaCor);
+        std::string getCor(){return cor;}
+        void setCor(int essaCor);
 
         Scalar getMin(){return Scalar(Bmin,Gmin,Rmin);}
         Scalar getMax(){return Scalar(Bmax,Gmax,Rmax);}
@@ -42,7 +43,7 @@ class Cor
         int RRmin, RRmax;
 
 
-        char cor; // A letra representando a cor:
+        std::string cor; // A cor:
 
     private:
 };

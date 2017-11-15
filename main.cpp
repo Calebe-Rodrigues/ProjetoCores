@@ -1,15 +1,10 @@
 #include <iostream>
 
-#include "cor.h"
-
 using namespace std;
 
 int main()
 {
-    Cor umaCor = Cor();
-
-    umaCor.CalibrarCor();
-
+    cout << "Relou uordi" << endl;
 
     return 0;
 }

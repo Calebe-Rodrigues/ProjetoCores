@@ -22,10 +22,11 @@ Cor::~Cor()
 
 
 
-void Cor::setCor(char essaCor){ //Entra com R G ou B no parametro para definir qual cor esse objeto representa
-    cor = essaCor;
+void Cor::setCor(int essaCor){ //Entra com R G ou B no parametro para definir qual cor esse objeto representa
 
-    if (essaCor == 'B'){
+    if (essaCor == 0){
+        cor = "Azul";
+
         Bmin = BBmin;
         Bmax = BBmax;
 
@@ -35,7 +36,9 @@ void Cor::setCor(char essaCor){ //Entra com R G ou B no parametro para definir q
         Rmin = BRmin;
         Rmax = BRmax;
     }
-    if (essaCor == 'G'){
+    if (essaCor == 1){
+        cor = "Verde";
+
         Bmin = GBmin;
         Bmax = GBmax;
 
@@ -45,7 +48,9 @@ void Cor::setCor(char essaCor){ //Entra com R G ou B no parametro para definir q
         Rmin = GRmin;
         Rmax = GRmax;
     }
-    if (essaCor == 'R'){
+    if (essaCor == 2){
+        cor = "Vermelho";
+
         Bmin = RBmin;
         Bmax = RBmax;
 
@@ -89,17 +94,15 @@ void Cor::CalibrarCor(){
         cvCreateTrackbar("LowR", "Control", &LowR, 255);
         cvCreateTrackbar("HighR", "Control", &HighR, 255);
 
+        Mat imgOriginal;
+        Mat outputImg;
         while(true){
-            Mat imgOriginal;
-
             bool bSuccess = cap.read(imgOriginal);
 
             if(!bSuccess){
                 cout << "Nao foi possivel ler o frame do video" << endl;
                 break;
             }
-
-            Mat outputImg;
 
             inRange(imgOriginal, Scalar(LowB,LowG,LowR), Scalar(HighB,HighG,HighR),outputImg);
 
