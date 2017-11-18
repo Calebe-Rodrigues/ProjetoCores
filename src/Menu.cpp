@@ -51,7 +51,7 @@ void Menu::abrirMenu(){
     default:
         std::cout << "\nComando invalido!\n\n";
         std::cin.clear();
-        std::cin.ignore(1, '\n');
+        std::cin.ignore(10, '\n');
         abrirMenu();
         break;
 
