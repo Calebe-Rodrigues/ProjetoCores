@@ -1,10 +1,13 @@
 #include <iostream>
+#include "Menu.h"
 
 using namespace std;
 
 int main()
 {
-    cout << "Relou uordi" << endl;
+    Menu oMenu = Menu();
+
+    oMenu.abrirMenu();
 
     return 0;
 }

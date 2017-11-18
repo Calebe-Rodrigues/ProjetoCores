@@ -14,12 +14,12 @@ Menu::~Menu()
 void Menu::exibirScores(){;} //LER ARQUIVOS COM OS NOMES E AS PONTUAÇÕES
 
 void Menu::abrirMenu(){
-    printf("---- Menu ----\n\n"
+    printf("\n---- Menu ----\n\n"
            "1 - Play\n"
            "2 - Definir nome do jogador\n"
            "3 - Exibir Pontuacoes\n"
            "4 - Calibrar cores (recomendado antes de jogar)\n"
-           "5 - Sair");
+           "5 - Sair\n\n");
     int i;
 
     std::cin >> i;
@@ -41,12 +41,18 @@ void Menu::abrirMenu(){
         break;
 
     case 4:
-        jogo.getACor().CalibrarCor();
+        jogo.getACor()->CalibrarCor();
         abrirMenu();
         break;
 
     case 5:
-        std::cout << "Obrigado por jogar!! (ou abrir e fechar o jogo no caso)";
+        std::cout << "\nObrigado por jogar!! (ou abrir e fechar o jogo)\n";
+        break;
+    default:
+        std::cout << "\nComando invalido!\n\n";
+        std::cin.clear();
+        std::cin.ignore(1, '\n');
+        abrirMenu();
         break;
 
     }

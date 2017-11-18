@@ -2,7 +2,7 @@
 #define COR_H
 
 #include "opencv2/highgui/highgui.hpp"
-#include "imgproc/imgproc.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
 #include <string>
 
 using namespace cv;

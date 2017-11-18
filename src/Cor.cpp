@@ -23,6 +23,7 @@ Cor::~Cor()
 
 
 void Cor::setCor(int essaCor){ //Entra com R G ou B no parametro para definir qual cor esse objeto representa
+    //cout << "em setCor BBmin = " << BBmin<< endl;
 
     if (essaCor == 0){
         cor = "Azul";
@@ -70,34 +71,38 @@ void Cor::CalibrarCor(){
     LowB = LowG = LowR = 0;
     HighB = HighG = HighR = 255;
 
+    VideoCapture cap(0); //Captura a imagem da camera padão
+    if ( !cap.isOpened() )  // Se não conseguir, fecha o programa
+    {
+        cout << "Nao foi possivel abrir a camera" << endl;
+        return;
+    }
+
+    namedWindow("Control", CV_WINDOW_AUTOSIZE); // Cria uma janela chamada"Control"
+
+    cvCreateTrackbar("LowB", "Control", &LowB, 255);
+    cvCreateTrackbar("HighB", "Control", &HighB, 255);
+
+    cvCreateTrackbar("LowG", "Control", &LowG, 255);
+    cvCreateTrackbar("HighG", "Control", &HighG, 255);
+
+    cvCreateTrackbar("LowR", "Control", &LowR, 255);
+    cvCreateTrackbar("HighR", "Control", &HighR, 255);
+
+    //Criando as variaveis antes de começar a loop
+    Mat imgOriginal;
+    Mat outputImg;
+    bool bSuccess;
+
     // O for vai rodar 3 vezes uma pra cada cor
     for (int i=0; i<3; i++){
-        if (i==0) cout << "Calibrando cor: Azul\nPressine 'enter' quando estiver calibrado.\n";
-        if (i==1) cout << "Calibrando cor: Verde\nPressine 'enter' quando estiver calibrado.\n";
-        if (i==2) cout << "Calibrando cor: Vermelho\nPressine 'enter' quando estiver calibrado.\n";
+        if (i==0) cout << "\nCalibrando cor: Azul\nPressine 'enter' quando estiver calibrado.\n";
+        if (i==1) cout << "\nCalibrando cor: Verde\nPressine 'enter' quando estiver calibrado.\n";
+        if (i==2) cout << "\nCalibrando cor: Vermelho\nPressine 'enter' quando estiver calibrado.\n";
 
-        VideoCapture cap(0); //Captura a imagem da camera padão
-        if ( !cap.isOpened() )  // Se não conseguir, fecha o programa
-        {
-             cout << "Nao foi possivel abrir a camera" << endl;
-             break;
-        }
 
-        namedWindow("Control", CV_WINDOW_AUTOSIZE); // Cria uma janela chamada"Control"
-
-        cvCreateTrackbar("LowB", "Control", &LowB, 255);
-        cvCreateTrackbar("HighB", "Control", &HighB, 255);
-
-        cvCreateTrackbar("LowG", "Control", &LowG, 255);
-        cvCreateTrackbar("HighG", "Control", &HighG, 255);
-
-        cvCreateTrackbar("LowR", "Control", &LowR, 255);
-        cvCreateTrackbar("HighR", "Control", &HighR, 255);
-
-        Mat imgOriginal;
-        Mat outputImg;
         while(true){
-            bool bSuccess = cap.read(imgOriginal);
+            bSuccess = cap.read(imgOriginal);
 
             if(!bSuccess){
                 cout << "Nao foi possivel ler o frame do video" << endl;
@@ -117,9 +122,11 @@ void Cor::CalibrarCor(){
             imshow("Output Image", outputImg); //Exibe a imagem de saida
             imshow("Original image", imgOriginal); //Exibe a imagem original
 
+            //cout << countNonZero(outputImg) << "   ";
+
             if (waitKey(30) == 13) //espera que a tecla 'enter' seja pressionada por 30ms. Se 'enter' for pressionado quebra o loop
             {
-                cout << "Cor calibrada" << endl;
+                cout << "Cor calibrada\n" << endl;
                 break;
             }
         }
@@ -160,4 +167,5 @@ void Cor::CalibrarCor(){
             RRmax = HighR;
         }
     }
+    cvDestroyAllWindows();
 }

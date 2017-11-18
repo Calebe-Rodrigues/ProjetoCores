@@ -2,10 +2,11 @@
 #define EXECUTAJOGO_H
 
 #include <iostream>
-#include "cor.h"
+#include "Cor.h"
 #include <string>
 #include <stdlib.h> // necessário p/ as funções rand() e srand()
 #include <time.h>   // necessário p/ função time()
+#include <unistd.h>
 
 class ExecutaJogo
 {
@@ -13,7 +14,7 @@ class ExecutaJogo
         ExecutaJogo();
         virtual ~ExecutaJogo();
 
-        Cor getACor(){return ACor;}
+        Cor *getACor(){return &ACor;}
 
         std::string getNome(){return nomeJogador;}
         void setNome();
@@ -23,7 +24,7 @@ class ExecutaJogo
 
         void geraCor();
 
-        int execJogo();
+        void execJogo();
 
     protected:
 
