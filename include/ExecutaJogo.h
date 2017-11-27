@@ -22,7 +22,7 @@ class ExecutaJogo
         int getScore(){return scoreAtual;}
         void umPonto(){scoreAtual++;}
 
-        void geraCor();
+        int geraCor();
 
         void execJogo();
 

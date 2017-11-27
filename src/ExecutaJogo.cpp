@@ -18,9 +18,13 @@ void ExecutaJogo::setNome(){
 }
 
 //Gera um numero aleatório de 0 a 2 e passa como parametro de setCor(int)
-void ExecutaJogo::geraCor(){
+int ExecutaJogo::geraCor(){
+    int oNumero;
     srand(time(NULL));
-    ACor.setCor(rand()%6);
+    oNumero = rand()%6;
+    ACor.setCor(oNumero);
+
+    return oNumero;
 }
 
 void ExecutaJogo::execJogo(){
@@ -40,10 +44,15 @@ void ExecutaJogo::execJogo(){
     Mat outputImg;
 
     bool bSuccess;
+    int ultimaCor, novaCor; //Variáveis para evitar a repetição de cores.
+    ultimaCor = 6; // Um valor fora da escala de cores.
 
     while (true){
-        geraCor();
-        //std::cout << "---- " << ACor.getCor() << "! ----\n\n";
+        novaCor = geraCor();
+
+        if (novaCor == ultimaCor) continue;
+
+        std::cout << "---- " << ACor.getCor() << "! ----\n\n";
         exibeCor = imread(ACor.getCor(), 1);
 
         namedWindow("Cor", CV_WINDOW_FREERATIO);
@@ -81,6 +90,7 @@ void ExecutaJogo::execJogo(){
 
                 cvDestroyAllWindows();
 
+                ultimaCor = novaCor;
                 break;
             }
             if (waitKey(30) == 27){ //Se 'esc' for pressionado quebra o loop
