@@ -7,12 +7,19 @@ using namespace std;
 Cor::Cor()
 {
     //Só definindo valores padrões iniciais para as cores
-    BBmin = GGmin = RRmin = BGmax = BRmax = GBmax = GRmax = RBmax = RGmax = 100;
-
-    BGmin = BRmin = GBmin = GRmin = RBmin = RGmin = 10;
-
+    BBmin = GGmin = RRmin = 150;
+    BGmax = BRmax = GBmax = GRmax = RBmax = RGmax = 100;
+    BGmin = BRmin = GBmin = GRmin = RBmin = RGmin = 20;
     BBmax = GGmax = RRmax = 255;
 
+    PBmin = PGmin = PRmin = 15;
+    PBmax = PGmax = PRmax = 35;
+
+    YBmin = 125;
+    YGmin = YRmin = 200;
+    YBmax = YGmax = YRmax = 155;
+
+    WBmin = WGmin = WRmin = WBmax = WGmax = WRmax = 255;
 }
 
 Cor::~Cor()
@@ -26,7 +33,7 @@ void Cor::setCor(int essaCor){ //Entra com R G ou B no parametro para definir qu
     //cout << "em setCor BBmin = " << BBmin<< endl;
 
     if (essaCor == 0){
-        cor = "Azul";
+        cor = "Azul.jpg";
 
         Bmin = BBmin;
         Bmax = BBmax;
@@ -38,7 +45,7 @@ void Cor::setCor(int essaCor){ //Entra com R G ou B no parametro para definir qu
         Rmax = BRmax;
     }
     if (essaCor == 1){
-        cor = "Verde";
+        cor = "Verde.jpg";
 
         Bmin = GBmin;
         Bmax = GBmax;
@@ -50,7 +57,7 @@ void Cor::setCor(int essaCor){ //Entra com R G ou B no parametro para definir qu
         Rmax = GRmax;
     }
     if (essaCor == 2){
-        cor = "Vermelho";
+        cor = "Vermelho.jpg";
 
         Bmin = RBmin;
         Bmax = RBmax;
@@ -60,6 +67,42 @@ void Cor::setCor(int essaCor){ //Entra com R G ou B no parametro para definir qu
 
         Rmin = RRmin;
         Rmax = RRmax;
+    }
+    if (essaCor == 3){
+        cor = "Amarelo.jpg";
+
+        Bmin = YBmin;
+        Bmax = YBmax;
+
+        Gmin = YGmin;
+        Gmax = YGmax;
+
+        Rmin = YRmin;
+        Rmax = YRmax;
+    }
+    if (essaCor == 4){
+        cor = "Branco.jpg";
+
+        Bmin = WBmin;
+        Bmax = WBmax;
+
+        Gmin = WGmin;
+        Gmax = WGmax;
+
+        Rmin = WRmin;
+        Rmax = WRmax;
+    }
+    if (essaCor == 5){
+        cor = "Preto.jpg";
+
+        Bmin = PBmin;
+        Bmax = PBmax;
+
+        Gmin = PGmin;
+        Gmax = PGmax;
+
+        Rmin = PRmin;
+        Rmax = PRmax;
     }
 }
 
@@ -95,10 +138,13 @@ void Cor::CalibrarCor(){
     bool bSuccess;
 
     // O for vai rodar 3 vezes uma pra cada cor
-    for (int i=0; i<3; i++){
+    for (int i=0; i<6; i++){
         if (i==0) cout << "\nCalibrando cor: Azul\nPressine 'enter' quando estiver calibrado.\n";
         if (i==1) cout << "\nCalibrando cor: Verde\nPressine 'enter' quando estiver calibrado.\n";
         if (i==2) cout << "\nCalibrando cor: Vermelho\nPressine 'enter' quando estiver calibrado.\n";
+        if (i==3) cout << "\nCalibrando cor: Amarelo\nPressine 'enter' quando estiver calibrado.\n";
+        if (i==4) cout << "\nCalibrando cor: Branco\nPressine 'enter' quando estiver calibrado.\n";
+        if (i==5) cout << "\nCalibrando cor: Preto\nPressine 'enter' quando estiver calibrado.\n";
 
 
         while(true){
@@ -165,6 +211,41 @@ void Cor::CalibrarCor(){
 
             RRmin = LowR;
             RRmax = HighR;
+        }
+        // No primeiro loop salva os valores limites para a cor amarelo
+        if (i==3){
+            YBmin = LowB;
+            YBmax = HighB;
+
+            YGmin = LowG;
+            YGmax = HighG;
+
+            YRmin = LowR;
+            YRmax = HighR;
+        }
+
+        // No segundo loop salva os valores para branco
+        if (i==4){
+            WBmin = LowB;
+            WBmax = HighB;
+
+            WGmin = LowG;
+            WGmax = HighG;
+
+            WRmin = LowR;
+            WRmax = HighR;
+        }
+
+        // No terceiro para preto
+        if (i==5){
+            PBmin = LowB;
+            PBmax = HighB;
+
+            PGmin = LowG;
+            PGmax = HighG;
+
+            PRmin = LowR;
+            PRmax = HighR;
         }
     }
     cvDestroyAllWindows();

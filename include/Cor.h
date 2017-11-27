@@ -42,8 +42,20 @@ class Cor
         int RGmin, RGmax;
         int RRmin, RRmax;
 
+        int YBmin, YBmax; //Para a cor Amarela
+        int YGmin, YGmax;
+        int YRmin, YRmax;
 
-        std::string cor; // A cor:
+        int WBmin, WBmax; //Para a cor Branca
+        int WGmin, WGmax;
+        int WRmin, WRmax;
+
+        int PBmin, PBmax; //Para a cor Preta
+        int PGmin, PGmax;
+        int PRmin, PRmax;
+
+
+        std::string cor; // O nome da cor:
 
     private:
 };

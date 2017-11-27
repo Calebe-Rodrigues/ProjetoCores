@@ -27,7 +27,6 @@ class ExecutaJogo
         void execJogo();
 
     protected:
-
     private:
         std::string nomeJogador;
         int scoreAtual;

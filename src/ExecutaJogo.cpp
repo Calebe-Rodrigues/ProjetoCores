@@ -20,7 +20,7 @@ void ExecutaJogo::setNome(){
 //Gera um numero aleatório de 0 a 2 e passa como parametro de setCor(int)
 void ExecutaJogo::geraCor(){
     srand(time(NULL));
-    ACor.setCor(rand()%3);
+    ACor.setCor(rand()%6);
 }
 
 void ExecutaJogo::execJogo(){
@@ -35,6 +35,7 @@ void ExecutaJogo::execJogo(){
          return;
     }
 
+    Mat exibeCor;
     Mat imgOriginal;
     Mat outputImg;
 
@@ -42,7 +43,12 @@ void ExecutaJogo::execJogo(){
 
     while (true){
         geraCor();
-        std::cout << "---- " << ACor.getCor() << "! ----\n\n";
+        //std::cout << "---- " << ACor.getCor() << "! ----\n\n";
+        exibeCor = imread(ACor.getCor(), 1);
+
+        namedWindow("Cor", CV_WINDOW_FREERATIO);
+        imshow("Cor", exibeCor);
+
 
         sleep(1);
 
@@ -73,15 +79,20 @@ void ExecutaJogo::execJogo(){
                 std::cout << "Bom Trabalho!!\n\n";
                 umPonto();
 
+                cvDestroyAllWindows();
+
                 break;
             }
             if (waitKey(30) == 27){ //Se 'esc' for pressionado quebra o loop
                 std::cout << "esc key is pressed by user\nPartida encerrada.\n" << std::endl;
                 cvDestroyAllWindows();
+
                 /*
                     SALVAR A PONTUAÇAO E O NOME DO JOGADOR EM UM ARQUIVO
                     AQUI
                 */
+
+                scoreAtual = 0;
 
                 return;
             }
