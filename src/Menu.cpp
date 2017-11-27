@@ -11,13 +11,32 @@ Menu::~Menu()
     //dtor
 }
 
-void Menu::exibirScores(){;} //LER ARQUIVOS COM OS NOMES E AS PONTUAÇÕES
+void Menu::exibirScore(){ //LER ARQUIVOS COM OS NOMES E AS PONTUAÇÕES
+    std::ifstream recorde;
+
+    recorde.open("highscore.txt");
+
+    if(!recorde.is_open()){
+        std::cout << "Erro ao abrir o arquivo!\n\n";
+        recorde.close();
+        return;
+    }
+
+    std::string nome;
+    int pontos;
+
+    recorde >> pontos;
+    recorde >> nome;
+
+    std::cout << "\nMaior pontuacao:\n\n" << nome << " --------- " << pontos << "pts\n\n";
+    recorde.close();
+}
 
 void Menu::abrirMenu(){
     printf("\n---- Menu ----\n\n"
            "1 - Play\n"
            "2 - Definir nome do jogador\n"
-           "3 - Exibir Pontuacoes\n"
+           "3 - Exibir Recorde\n"
            "4 - Calibrar cores (recomendado antes de jogar)\n"
            "5 - Sair\n\n");
     int i;
@@ -36,7 +55,7 @@ void Menu::abrirMenu(){
         break;
 
     case 3:
-        exibirScores();
+        exibirScore();
         abrirMenu();
         break;
 

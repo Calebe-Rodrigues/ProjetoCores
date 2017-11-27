@@ -7,6 +7,7 @@
 #include <stdlib.h> // necessário p/ as funções rand() e srand()
 #include <time.h>   // necessário p/ função time()
 #include <unistd.h>
+#include <fstream>
 
 class ExecutaJogo
 {

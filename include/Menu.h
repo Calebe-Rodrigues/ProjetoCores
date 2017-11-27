@@ -10,7 +10,7 @@ class Menu
         Menu();
         virtual ~Menu();
 
-        void exibirScores();
+        void exibirScore();
         void abrirMenu();
 
     protected:

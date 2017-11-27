@@ -97,10 +97,42 @@ void ExecutaJogo::execJogo(){
                 std::cout << "esc key is pressed by user\nPartida encerrada.\n" << std::endl;
                 cvDestroyAllWindows();
 
-                /*
-                    SALVAR A PONTUAÇAO E O NOME DO JOGADOR EM UM ARQUIVO
-                    AQUI
-                */
+                // EXIBINDO A PONTUAÇÃO E VERIFICANDO SE É MAIOR QUE O RECORDE
+
+                std::cout << "Voce marcou " << scoreAtual << " pontos!!\n\n";
+
+                std::ifstream inpontos;
+
+                inpontos.open("highscore.txt");
+
+                if (!inpontos.is_open()){
+                    std::cout << "Erro ao salvar a pontuacao!\n";
+                    inpontos.close();
+                    return;
+                }
+
+                int maiorPont;
+
+                inpontos >> maiorPont;
+                inpontos.close();
+
+                if (scoreAtual > maiorPont){
+                    std::cout << "NOVO RECORDE!!\n\n";
+                    std::ofstream outpontos;
+
+                    outpontos.open("highscore.txt");
+
+                    if (!outpontos.is_open()){
+                        std::cout << "Erro ao salvar a pontuacao!\n";
+                        outpontos.close();
+                        return;
+                    }
+
+                    outpontos << scoreAtual << std::endl << nomeJogador;
+
+                    outpontos.close();
+
+                }
 
                 scoreAtual = 0;
 
