@@ -33,7 +33,7 @@ void Cor::setCor(int essaCor){ //Entra com R G ou B no parametro para definir qu
     //cout << "em setCor BBmin = " << BBmin<< endl;
 
     if (essaCor == 0){
-        cor = "Azul.jpg";
+        cor = "Azul";
 
         Bmin = BBmin;
         Bmax = BBmax;
@@ -45,7 +45,7 @@ void Cor::setCor(int essaCor){ //Entra com R G ou B no parametro para definir qu
         Rmax = BRmax;
     }
     if (essaCor == 1){
-        cor = "Verde.jpg";
+        cor = "Verde";
 
         Bmin = GBmin;
         Bmax = GBmax;
@@ -57,7 +57,7 @@ void Cor::setCor(int essaCor){ //Entra com R G ou B no parametro para definir qu
         Rmax = GRmax;
     }
     if (essaCor == 2){
-        cor = "Vermelho.jpg";
+        cor = "Vermelho";
 
         Bmin = RBmin;
         Bmax = RBmax;
@@ -69,7 +69,7 @@ void Cor::setCor(int essaCor){ //Entra com R G ou B no parametro para definir qu
         Rmax = RRmax;
     }
     if (essaCor == 3){
-        cor = "Amarelo.jpg";
+        cor = "Amarelo";
 
         Bmin = YBmin;
         Bmax = YBmax;
@@ -81,7 +81,7 @@ void Cor::setCor(int essaCor){ //Entra com R G ou B no parametro para definir qu
         Rmax = YRmax;
     }
     if (essaCor == 4){
-        cor = "Branco.jpg";
+        cor = "Branco";
 
         Bmin = WBmin;
         Bmax = WBmax;
@@ -93,7 +93,7 @@ void Cor::setCor(int essaCor){ //Entra com R G ou B no parametro para definir qu
         Rmax = WRmax;
     }
     if (essaCor == 5){
-        cor = "Preto.jpg";
+        cor = "Preto";
 
         Bmin = PBmin;
         Bmax = PBmax;

@@ -21,7 +21,7 @@ class ExecutaJogo
         void setNome();
 
         int getScore(){return scoreAtual;}
-        void umPonto(){scoreAtual++;}
+        void umPonto(int mult);
 
         int geraCor();
 

@@ -12,6 +12,11 @@ ExecutaJogo::~ExecutaJogo()
     //dtor
 }
 
+void ExecutaJogo::umPonto(int mult){
+    scoreAtual += mult;
+
+}
+
 void ExecutaJogo::setNome(){
     std::cout << "\nInsira o seu nome (sem espacos): ";
     std::cin >> nomeJogador;
@@ -44,6 +49,7 @@ void ExecutaJogo::execJogo(){
     Mat outputImg;
 
     bool bSuccess;
+    int scoreMult;
     int ultimaCor, novaCor; //Variáveis para evitar a repetição de cores.
     ultimaCor = 6; // Um valor fora da escala de cores.
 
@@ -52,8 +58,8 @@ void ExecutaJogo::execJogo(){
 
         if (novaCor == ultimaCor) continue;
 
-        std::cout << "---- " << ACor.getCor() << "! ----\n\n";
-        exibeCor = imread(ACor.getCor(), 1);
+        //std::cout << "---- " << ACor.getCor() << "! ----\n\n";
+        exibeCor = imread(ACor.getCor() + ".jpg", 1);
 
         namedWindow("Cor", CV_WINDOW_FREERATIO);
         imshow("Cor", exibeCor);
@@ -61,8 +67,12 @@ void ExecutaJogo::execJogo(){
 
         sleep(1);
 
+        scoreMult = 20;
+
         while(true){
             bSuccess = cap.read(imgOriginal);
+
+            if (scoreMult > 0) scoreMult--;
 
             if(!bSuccess){
                 std::cout << "Nao foi possivel ler o frame" << std::endl;
@@ -85,8 +95,9 @@ void ExecutaJogo::execJogo(){
             //std::cout << countNonZero(outputImg) << "   ";
 
             if (countNonZero(outputImg) >= 40000){  //40000 é o valor que representa o valor minimo da carta
+                std::cout << "---- " << ACor.getCor() << "! ----\n\n";
                 std::cout << "Bom Trabalho!!\n\n";
-                umPonto();
+                umPonto(scoreMult);
 
                 cvDestroyAllWindows();
 
